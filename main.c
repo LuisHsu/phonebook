@@ -38,10 +38,18 @@ int main(int argc, char *argv[])
 
     /* build the entry */
     entry *pHead, *e;
+#ifndef OPT
     pHead = (entry *) malloc(sizeof(entry));
-    printf("size of entry : %lu bytes\n", sizeof(entry));
     e = pHead;
     e->pNext = NULL;
+#else
+	pHead = (entry *) malloc(sizeof(entry)*26);
+    for(int i=0;i<26;++i){
+    	pHead[i].pChild=NULL;
+    }
+    e = pHead;
+#endif
+    printf("size of entry : %lu bytes\n", sizeof(entry));
 
 #if defined(__GNUC__)
     __builtin___clear_cache((char *) pHead, (char *) pHead + sizeof(entry));
@@ -79,8 +87,8 @@ int main(int argc, char *argv[])
     clock_gettime(CLOCK_REALTIME, &end);
     cpu_time2 = diff_in_second(start, end);
 
-    printf("execution time of append() : %lf sec\n", cpu_time1);
-    printf("execution time of findName() : %lf sec\n", cpu_time2);
+    printf("execution time of append() : %.13lf sec\n", cpu_time1);
+    printf("execution time of findName() : %.13lf sec\n", cpu_time2);
 
     /* FIXME: release all allocated entries */
     free(pHead);

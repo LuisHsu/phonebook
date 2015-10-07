@@ -3,12 +3,24 @@
 #include <string.h>
 #include <ctype.h>
 
-#include "phonebook_opt.h"
+#include "phonebook_opt2.h"
+
+/* Hash function */
+unsigned int hash(char *str){
+    unsigned int hash = 5381;
+    int c;
+
+    while (c = *str++){
+        hash = ((hash << 5) + hash) + c;
+    }
+
+    return hash%26;
+}
 
 /* FILL YOUR OWN IMPLEMENTATION HERE! */
 data *findName(char lastname[], entry *pHead)
 {
-    int key=lastname[0]%26;
+    int key=hash(lastname);
 	data *cur = pHead[key].pChild;
 	while(cur!=NULL){
 		if(!strcmp(cur->lastName,lastname)){
@@ -21,7 +33,7 @@ data *findName(char lastname[], entry *pHead)
 
 entry *append(char lastName[], entry *e)
 {
-	int key=lastName[0]%26;
+	int key=hash(lastName);
 	data *newData = (data *)malloc(sizeof(data));
 	strcpy(newData->lastName, lastName);
 	newData->pNext = e[key].pChild;

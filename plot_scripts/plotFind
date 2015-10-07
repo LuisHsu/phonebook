@@ -4,10 +4,11 @@ unset key
 set xtics ("Origin" 1, "Character index" 2, "Hash index" 3)
 
 set style fill solid 1.0
+set logscale y
 
 plot 'outp3.txt' using 1:2 with boxes,\
 'outp3.txt' using 1:2:2 with labels
 
 set terminal png
-set output 'cache-misses.png'
+set output 'findName.png'
 replot

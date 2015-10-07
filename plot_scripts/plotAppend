@@ -9,5 +9,5 @@ plot 'outp3.txt' using 1:2 with boxes,\
 'outp3.txt' using 1:2:2 with labels
 
 set terminal png
-set output 'cache-misses.png'
+set output 'append.png'
 replot

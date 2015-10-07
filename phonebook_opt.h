@@ -24,6 +24,7 @@ typedef struct __PHONE_BOOK_HEAD {
     //struct __PHONE_BOOK_HEAD *pNext;
 } entry;
 
+unsigned int hash(char *str);
 data *findName(char lastname[], entry *pHead);
 entry *append(char lastName[], entry *e);
 

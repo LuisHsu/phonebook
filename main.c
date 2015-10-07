@@ -64,10 +64,8 @@ int main(int argc, char *argv[])
     }
     clock_gettime(CLOCK_REALTIME, &end);
     cpu_time1 = diff_in_second(start, end);
-
     /* close file as soon as possible */
     fclose(fp);
-
     e = pHead;
 
     /* the givn last name to find */
@@ -90,7 +88,7 @@ int main(int argc, char *argv[])
     printf("execution time of append() : %.13lf sec\n", cpu_time1);
     printf("execution time of findName() : %.13lf sec\n", cpu_time2);
 
-    /* FIXME: release all allocated entries */
+    /* release all allocated entries */
     free(pHead);
 
     return 0;

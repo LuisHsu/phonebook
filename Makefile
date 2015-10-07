@@ -15,7 +15,15 @@ phonebook_opt: $(SRCS_common) phonebook_opt.c phonebook_opt.h
 		$(SRCS_common) $@.c
 
 run: $(EXEC)
-	watch -d -t ./phonebook_orig
+	@echo "=== Origin ==="
+	@echo "echo 1 > /proc/sys/vm/drop_caches" | sudo sh
+	@./phonebook_orig
+	@echo "=== Character Index ==="
+	@echo "echo 1 > /proc/sys/vm/drop_caches" | sudo sh
+	@./phonebook_opt
 
+plot_miss: $(EXEC)
+	@bash ./plot_scripts/plotmiss.sh
+	
 clean:
 	$(RM) $(EXEC) *.o perf.*

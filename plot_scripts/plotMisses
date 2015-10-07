@@ -1,0 +1,13 @@
+set xzeroaxis
+set boxwidth 0.3
+unset key
+set xtics ("Origin" 1, "Character index" 2)
+
+set style fill solid 1.0
+
+plot 'outp3.txt' using 1:2 with boxes,\
+'outp3.txt' using 1:2:2 with labels
+
+set terminal png
+set output 'cache-misses.png'
+replot

@@ -43,9 +43,9 @@ int main(int argc, char *argv[])
     e = pHead;
     e->pNext = NULL;
 #else
-	pHead = (entry *) malloc(sizeof(entry)*26);
-    for(int i=0;i<26;++i){
-    	pHead[i].pChild=NULL;
+    pHead = (entry *) malloc(sizeof(entry)*26);
+    for(int i=0; i<26; ++i) {
+        pHead[i].pChild=NULL;
     }
     e = pHead;
 #endif

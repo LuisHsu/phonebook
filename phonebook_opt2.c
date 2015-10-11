@@ -6,11 +6,12 @@
 #include "phonebook_opt2.h"
 
 /* Hash function */
-unsigned int hash(char *str){
+unsigned int hash(char *str)
+{
     unsigned int hash = 5381;
     int c;
 
-    while (c = *str++){
+    while (c = *str++) {
         hash = ((hash << 5) + hash) + c;
     }
 
@@ -21,22 +22,22 @@ unsigned int hash(char *str){
 data *findName(char lastname[], entry *pHead)
 {
     int key=hash(lastname);
-	data *cur = pHead[key].pChild;
-	while(cur!=NULL){
-		if(!strcmp(cur->lastName,lastname)){
-			return cur;		
-		}
-		cur = cur->pNext;
-	}
+    data *cur = pHead[key].pChild;
+    while(cur!=NULL) {
+        if(!strcmp(cur->lastName,lastname)) {
+            return cur;
+        }
+        cur = cur->pNext;
+    }
     return NULL;
 }
 
 entry *append(char lastName[], entry *e)
 {
-	int key=hash(lastName);
-	data *newData = (data *)malloc(sizeof(data));
-	strcpy(newData->lastName, lastName);
-	newData->pNext = e[key].pChild;
-	e[key].pChild = newData;
-	return e;
+    int key=hash(lastName);
+    data *newData = (data *)malloc(sizeof(data));
+    strcpy(newData->lastName, lastName);
+    newData->pNext = e[key].pChild;
+    e[key].pChild = newData;
+    return e;
 }
